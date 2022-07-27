@@ -6,7 +6,10 @@ export default function App() {
     firstName: "",
     lastName: "",
     email: "",
-    company: ""
+    company: "",
+    phone: "",
+    city: "",
+    state: ""
 
   });
 
@@ -45,9 +48,33 @@ export default function App() {
     }));
   }
 
+  const handlePhoneInputChange = (event) => {
+    event.persist();
+    setValues((values) => ({
+      ...values,
+      phone: event.target.value,
+    }));
+  }
+
+  const handleCityInputChange = (event) => {
+    event.persist();
+    setValues((values) => ({
+      ...values,
+      city: event.target.value,
+    }));
+  }
+
+  const handleStateInputChange = (event) => {
+    event.persist();
+    setValues((values) => ({
+      ...values,
+      state: event.target.value,
+    }));
+  }
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    if(values.firstName && values.lastName && values.email && values.company) {
+    if(values.firstName && values.lastName && values.email && values.company && values.phone && values.state) {
         setValid(true);
         console.log(valid);
         console.log(submitted);
@@ -89,7 +116,7 @@ export default function App() {
           onChange={handleEmailInputChange}
           id="email"
           className="form-field"
-          type="text"
+          type="email"
           placeholder="Email"
           name="email"
         />
@@ -104,6 +131,40 @@ export default function App() {
           placeholder="Company"
           name="company" />
           {submitted && !values.company ? <span>Please enter a company</span> : null }
+
+          <input
+          value={values.phone}
+          onChange={handlePhoneInputChange}
+          id="phone"
+          className="form-field"
+          type="number"
+          placeholder="Phone Number"
+          name="phone"
+          minLength="7"
+          maxLength="10" />
+          {submitted && !values.phone ? <span>Please enter a valid phone number</span> : null }
+
+          <input
+          value={values.city}
+          onChange={handleCityInputChange}
+          id="city"
+          className="form-field"
+          type="text"
+          placeholder="City"
+          name="city" />
+          
+
+          <input
+          value={values.state}
+          onChange={handleStateInputChange}
+          id="state"
+          className="form-field"
+          type="text"
+          placeholder="State"
+          name="state" />
+          {submitted && !values.firstName ? <span>Please enter a state</span> : null }
+          
+          
         
         <button className="form-field" type="submit">
           Submit
