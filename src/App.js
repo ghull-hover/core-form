@@ -5,7 +5,8 @@ export default function App() {
   const [values, setValues] = useState({
     firstName: "",
     lastName: "",
-    email: ""
+    email: "",
+    company: ""
 
   });
 
@@ -36,9 +37,17 @@ export default function App() {
     }));
   }
 
+  const handleCompanyInputChange = (event) => {
+    event.persist();
+    setValues((values) => ({
+      ...values,
+      company: event.target.value,
+    }));
+  }
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    if(values.firstName && values.lastName && values.email) {
+    if(values.firstName && values.lastName && values.email && values.company) {
         setValid(true);
         console.log(valid);
         console.log(submitted);
@@ -86,9 +95,18 @@ export default function App() {
         />
         {submitted && !values.email ? <span>Please enter an email</span> : null }
 
-
+        <input
+          value={values.company}
+          onChange={handleCompanyInputChange}
+          id="company"
+          className="form-field"
+          type="text"
+          placeholder="Company"
+          name="company" />
+          {submitted && !values.company ? <span>Please enter a company</span> : null }
+        
         <button className="form-field" type="submit">
-          Register
+          Submit
         </button>
       </form>
     </div>
