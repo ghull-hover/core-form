@@ -94,12 +94,12 @@ export default function Form() {
       setSubmitted(true);
       }
   
-      // fetch(`https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8&oid=${values.oid}&retURL=${values.retURL}&first_name=${values.firstName}&last_name=${values.lastName}&company=${values.company}&city=${values.city}&email=${values.email}&phone=${values.phone}&=state=${values.state}`,
-      // requestOptions
-      // )
-      // .then((response) => response.text())
-      // //.then((result) => console.log(result))
-      // //.catch((error) => console.log('error', error));
+      fetch(`https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8&oid=${values.oid}&retURL=${values.retURL}&first_name=${values.firstName}&last_name=${values.lastName}&company=${values.company}&city=${values.city}&email=${values.email}&phone=${values.phone}&=state=${values.state}`,
+      requestOptions
+       )
+       .then((response) => response.text())
+      .then((result) => console.log(result))
+      .catch((error) => console.log('error', error));
   
   
     return (
